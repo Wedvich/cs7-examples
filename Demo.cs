@@ -50,10 +50,19 @@ namespace Cs7
         {
             // Deconstruct, extension method, assignment
 
-            var message = new Message("Error", "Something went wrong for some reason");
+            var message = new Message("Error", "Something went wrong for some message");
 
             var (subject, body) = message;
             Console.WriteLine($"{subject}: {body}");
+
+            var exception = new Exception("Hello");
+            var (exceptionMessage, hresult) = exception;
+        }
+
+        private static void Deconstruct(this Exception exception, out string message, out int hresult)
+        {
+            message = exception.Message;
+            hresult = exception.HResult;
         }
 
         public static async Task AsyncReturnTypes()
